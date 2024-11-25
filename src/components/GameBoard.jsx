@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const initialGameBoard = [
     [null, null, null],
     [null, null, null],
@@ -7,8 +9,10 @@ const initialGameBoard = [
 export default function GameBoard(){
     const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
-    function handleSelectedCell(){
-        setGameBoard();
+    function handleSelectedCell(rowIndex, colIndex){
+        setGameBoard((previousGameBoard) => {
+            previousGameBoard[rowIndex][colIndex] = "X"
+        });
     }
 
     return (
