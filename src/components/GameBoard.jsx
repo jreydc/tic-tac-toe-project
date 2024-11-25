@@ -11,18 +11,20 @@ export default function GameBoard(){
 
     function handleSelectedCell(rowIndex, colIndex){
         setGameBoard((previousGameBoard) => {
-            previousGameBoard[rowIndex][colIndex] = "X"
+            const updatedBoard = [...previousGameBoard.map(innerArray => [...innerArray])];
+            updatedBoard[rowIndex][colIndex] = "X";
+            return updatedBoard;
         });
     }
 
     return (
         <ol id="game-board">
-            {initialGameBoard.map((row, rowIndex) => (
+            {gameBoard.map((row, rowIndex) => (
                 <li key={rowIndex}>
                     <ol>
                         {row.map((playerSymbol, colIndex) => (
                             <li key={colIndex}>
-                                <button>{playerSymbol}</button>
+                                <button onClick={() => handleSelectedCell(rowIndex, colIndex)}>{playerSymbol}</button>
                             </li>
                         ))}
                     </ol>
